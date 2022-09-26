@@ -6,5 +6,7 @@ public class PropertyConstants {
     public static final String PLAYER2 = "player2";
     public static final String HUMAN = "HUMAN";
     public static final String COMPUTER = "COMPUTER";
+    public static final String WINNING_STRATEGY = "WINNING_STRATEGY";
+    public static final String DEFAULT = "DEFAULT";
 
 }

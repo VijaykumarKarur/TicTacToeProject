@@ -1,6 +1,7 @@
 package dev.vijay.model;
 
 import dev.vijay.factory.PlayerFactory;
+import dev.vijay.strategy.IWinningStrategy;
 
 public class Game {
     private Board board;
@@ -8,13 +9,16 @@ public class Game {
     private Player player2;
     private Player currentPlayer;
 
-    public Game(int dimension, PlayerType playerType1, PlayerType playerType2){
+    private IWinningStrategy winningStrategy;
+
+    public Game(int dimension, PlayerType playerType1, PlayerType playerType2, IWinningStrategy winningStrategy){
         this.board = new Board(dimension);
         this.player1 = PlayerFactory.getPlayer(playerType1);
         this.player2 = PlayerFactory.getPlayer(playerType2);
         this.player1.setSymbol(Symbol.X);
         this.player2.setSymbol(Symbol.O);
         this.currentPlayer = this.player1;
+        this.winningStrategy = winningStrategy;
     }
 
     /***
@@ -50,7 +54,7 @@ public class Game {
                     board.setMoveCount(board.getMoveCount() + 1);
 
                     //check if the current user won after his move
-                    if(board.isWinningMove(position[0], position[1], currentPlayer)){
+                    if(winningStrategy.hasWon(board, currentPlayer, position[0], position[1])){
                         System.out.println("***************************************************************");
                         System.out.println("Player "+currentPlayer.getSymbol()+" WON the Game");
                         System.out.println("***************************************************************");

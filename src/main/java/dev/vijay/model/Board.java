@@ -37,6 +37,33 @@ public class Board {
     private final int MAIN_DIAGONAL_INDEX = 0;
     private final int ANTI_DIAGONAL_INDEX = 1;
 
+    public int[][] getRowCount(){
+        return this.rowCount;
+    }
+
+    public int[][] getColCount(){
+        return this.colCount;
+    }
+
+    public int[][] getDiagonalCount(){
+        return this.diagonalCount;
+    }
+
+    public int getPLAYER1_INDEX(){
+        return this.PLAYER1_INDEX;
+    }
+
+    public int getPLAYER2_INDEX(){
+        return this.PLAYER2_INDEX;
+    }
+
+    public int getMAIN_DIAGONAL_INDEX(){
+        return this.MAIN_DIAGONAL_INDEX;
+    }
+    public int getANTI_DIAGONAL_INDEX(){
+        return this.ANTI_DIAGONAL_INDEX;
+    }
+
     public int getMoveCount() {
         return moveCount;
     }
@@ -166,42 +193,5 @@ public class Board {
                 diagonalCount[ANTI_DIAGONAL_INDEX][PLAYER2_INDEX] += 1;
             }
         }
-    }
-
-    /***
-     * Method determines if the Player won the Game. A Player wins if either
-     * 1. Any of the row is entirely marked by a Player or
-     * 2. Any of the column is entirely marked by a Player or
-     * 3. Any of the diagonals - main and anti, are entirely marked by a player
-     * @param rIndex 0 indexed row position on the board
-     * @param cIndex 0 indexed column position on the board
-     * @param player current Player making the move
-     * @return True if Player won else False
-     */
-    public boolean isWinningMove(int rIndex, int cIndex, Player player){
-        //Get Player's symbol
-        Symbol symbol = player.getSymbol();
-
-        //If Player1
-        if(symbol == Symbol.X){
-            //If any of the row, or column, or diagonal is entirely marked by the Player
-            if(rowCount[rIndex][PLAYER1_INDEX] == dimension ||
-                    colCount[cIndex][PLAYER1_INDEX] == dimension ||
-                    diagonalCount[MAIN_DIAGONAL_INDEX][PLAYER1_INDEX] == dimension ||
-                    diagonalCount[ANTI_DIAGONAL_INDEX][PLAYER1_INDEX] == dimension){
-                return true;
-            }
-        }
-        //If Player2
-        else{
-            //If any of the row, or column, or diagonal is entirely marked by the Player
-            if(rowCount[rIndex][PLAYER2_INDEX] == dimension ||
-                    colCount[cIndex][PLAYER2_INDEX] == dimension ||
-                    diagonalCount[MAIN_DIAGONAL_INDEX][PLAYER2_INDEX] == dimension ||
-                    diagonalCount[ANTI_DIAGONAL_INDEX][PLAYER2_INDEX] == dimension){
-                return true;
-            }
-        }
-        return false;
     }
 }
